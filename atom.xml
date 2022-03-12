@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-02-15T08:56:35.696Z</updated>
+  <updated>2022-03-12T07:52:45.525Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker知识总结以及遇到的问题汇总（持续更新）</title>
+    <link href="http://example.com/2022/03/12/Docker%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%E4%BB%A5%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>http://example.com/2022/03/12/Docker%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%E4%BB%A5%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</id>
+    <published>2022-03-12T07:39:39.000Z</published>
+    <updated>2022-03-12T07:52:45.525Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><h2 id="错误1："><a href="#错误1：" class="headerlink" title="错误1："></a>错误1：</h2><h3 id="Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running"><a href="#Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running" class="headerlink" title=" Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"></a><code> Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</code></h3><p>常见的解决方法csdn上都有，但是还有可能是一些阴间的原因</p><p>如果csdn上的方法都没用的话，可以检查下<code>/etc/docker/key.json</code>文件是否正确，问题包括但不限于：</p><ul><li>缺少花括号等语法错误</li><li>出现了错误的键值对，有冗余内容</li></ul><p>正确的格式应当类似如下内容：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"> <span class="attr">&quot;crv&quot;</span><span class="punctuation">:</span><span class="string">&quot;P-256&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;d&quot;</span><span class="punctuation">:</span><span class="string">&quot;36XGfrRv-_lPluKctIHib1cBUu9qFB3sfKkJEwJ13c0&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;kid&quot;</span><span class="punctuation">:</span><span class="string">&quot;ZL2W:IAUT:PCS5:E22Q:2AWK:CBCR:KLQF:7MEK:KJHO:2WNE:GNO4:L72A&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;kty&quot;</span><span class="punctuation">:</span><span class="string">&quot;EC&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="string">&quot;39IKzok4T84nOsrOFTgbGCUnTOVjSTxevs-R1Z3JCz8&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="string">&quot;jeVIXZcN9kLZSwcLsRhvNsBQ8kure3xhwze6922Snc4&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p><strong>tips</strong>:还可以使用命令<code>sudo dockerd --debug</code>，它会显示出当前产生的错误，非常直观</p><h1 id="知识总结"><a href="#知识总结" class="headerlink" title="知识总结"></a>知识总结</h1><h2 id="更改用户权限"><a href="#更改用户权限" class="headerlink" title="更改用户权限"></a>更改用户权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker          <span class="comment">#添加docker用户组</span></span><br><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker  <span class="comment">#将当前用户添加至docker用户组</span></span><br><span class="line">newgrp docker                 <span class="comment">#更新docker用户组</span></span><br></pre></td></tr></table></figure><p>这样再使用命令就不用加<code>sudo</code>了</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;报错&quot;&gt;&lt;a href=&quot;#报错&quot; class=&quot;headerlink&quot; title=&quot;报错&quot;&gt;&lt;/a&gt;报错&lt;/h1&gt;&lt;h2 id=&quot;错误1：&quot;&gt;&lt;a href=&quot;#错误1：&quot; class=&quot;headerlink&quot; title=&quot;错误1：&quot;&gt;&lt;/a&gt;错误1：&lt;/h</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="docker" scheme="http://example.com/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux系统C编程基础</title>
+    <link href="http://example.com/2022/02/19/LInux%E7%B3%BB%E7%BB%9FC%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/"/>
+    <id>http://example.com/2022/02/19/LInux%E7%B3%BB%E7%BB%9FC%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</id>
+    <published>2022-02-19T07:49:52.000Z</published>
+    <updated>2022-02-19T08:47:28.980Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="gcc简介"><a href="#gcc简介" class="headerlink" title="gcc简介"></a>gcc简介</h1><h2 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h2><ul><li>预处理：对源代码文件中的文件包含(include)、预编译语句(如宏定义define等)进行分析</li><li>编译：就是把C&#x2F;C++代码“翻译”成汇编代码</li><li>汇编：将第二步输出的汇编代码翻译成符合一定格式的机器代码，生成以.s为后缀的目标文件</li><li>链接：将上步生成的目标文件和系统库的目标文件和库文件链接起来，最终生成了可以在特定平台运行的可执行文件</li></ul><h2 id="常用编译选项"><a href="#常用编译选项" class="headerlink" title="常用编译选项"></a>常用编译选项</h2><h3 id="o-file"><a href="#o-file" class="headerlink" title="-o file"></a><code>-o file</code></h3><p>将经过gcc处理过的结果存为文件<em>file</em>，这个结果文件可能是预处理文件、汇编文件、目标文件或者最终的可执行文件。假设被处理的源文件为source.suffix，如果这个选项被省略了，那么生成的可执行文件默认名称为a.out；目标文件默认名为source.o；汇编文件默认名为source.s；生成的预处理文件则发送到标准输出设备。</p><h3 id="c"><a href="#c" class="headerlink" title="-c"></a><code>-c</code></h3><p>只编译，不链接成为可执行文件，编译器只是由输入的.c等源代码文件生成.o为后缀的目标文件。在对源文件进行查错时，或只需产生目标文件时可以使用该选项</p><h3 id="g-gdb"><a href="#g-gdb" class="headerlink" title="g[gdb]"></a><code>g[gdb]</code></h3><p>在可执行文件中加入调试信息，方便进行程序的调试。如果使用中括号中的选项，表示加入gdb扩展的调试信息，方便使用gdb来进行调试</p><h3 id="O-0-1-2-3"><a href="#O-0-1-2-3" class="headerlink" title="-O[0,1,2,3]"></a><code>-O[0,1,2,3]</code></h3><p>对生成的代码使用优化，中括号中的部分为优化级别，缺省的情况为2级优化，0为不进行优化。注意，采用更高级的优化并不一定得到效率更高的代码</p><h3 id="I-dirname"><a href="#I-dirname" class="headerlink" title="-I dirname"></a><code>-I dirname</code></h3><p>(是大写i，不是小写L)</p><p>将dirname所指出的目录加入到程序头文件目录列表中，是在<strong>预编译</strong>过程中使用的参数</p><h3 id="L-dirname"><a href="#L-dirname" class="headerlink" title="-L dirname"></a><code>-L dirname</code></h3><ul><li>将dirname所指出的目录加入到程序函数档案库文件的目录列表中，是在<strong>连接</strong>过程中使用的参数</li><li>在预设状态下，连接程序ld在系统的预设路径中(如&#x2F;usr&#x2F;lib)寻找所需要的档案库文件</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;gcc简介&quot;&gt;&lt;a href=&quot;#gcc简介&quot; class=&quot;headerlink&quot; title=&quot;gcc简介&quot;&gt;&lt;/a&gt;gcc简介&lt;/h1&gt;&lt;h2 id=&quot;编译过程&quot;&gt;&lt;a href=&quot;#编译过程&quot; class=&quot;headerlink&quot; title=&quot;编译过程&quot;</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="C/C++" scheme="http://example.com/tags/C-C/"/>
+    
+  </entry>
   
   <entry>
     <title>Pthread线程库部分函数</title>
@@ -89,9 +141,9 @@
     <category term="Cmake" scheme="http://example.com/categories/Cmake/"/>
     
     
-    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
     <category term="Cmake" scheme="http://example.com/tags/Cmake/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
