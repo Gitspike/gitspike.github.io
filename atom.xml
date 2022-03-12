@@ -43,32 +43,6 @@
   </entry>
   
   <entry>
-    <title>Linux系统C编程基础</title>
-    <link href="http://example.com/2022/02/19/LInux%E7%B3%BB%E7%BB%9FC%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/"/>
-    <id>http://example.com/2022/02/19/LInux%E7%B3%BB%E7%BB%9FC%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</id>
-    <published>2022-02-19T07:49:52.000Z</published>
-    <updated>2022-02-19T08:47:28.980Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="gcc简介"><a href="#gcc简介" class="headerlink" title="gcc简介"></a>gcc简介</h1><h2 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h2><ul><li>预处理：对源代码文件中的文件包含(include)、预编译语句(如宏定义define等)进行分析</li><li>编译：就是把C&#x2F;C++代码“翻译”成汇编代码</li><li>汇编：将第二步输出的汇编代码翻译成符合一定格式的机器代码，生成以.s为后缀的目标文件</li><li>链接：将上步生成的目标文件和系统库的目标文件和库文件链接起来，最终生成了可以在特定平台运行的可执行文件</li></ul><h2 id="常用编译选项"><a href="#常用编译选项" class="headerlink" title="常用编译选项"></a>常用编译选项</h2><h3 id="o-file"><a href="#o-file" class="headerlink" title="-o file"></a><code>-o file</code></h3><p>将经过gcc处理过的结果存为文件<em>file</em>，这个结果文件可能是预处理文件、汇编文件、目标文件或者最终的可执行文件。假设被处理的源文件为source.suffix，如果这个选项被省略了，那么生成的可执行文件默认名称为a.out；目标文件默认名为source.o；汇编文件默认名为source.s；生成的预处理文件则发送到标准输出设备。</p><h3 id="c"><a href="#c" class="headerlink" title="-c"></a><code>-c</code></h3><p>只编译，不链接成为可执行文件，编译器只是由输入的.c等源代码文件生成.o为后缀的目标文件。在对源文件进行查错时，或只需产生目标文件时可以使用该选项</p><h3 id="g-gdb"><a href="#g-gdb" class="headerlink" title="g[gdb]"></a><code>g[gdb]</code></h3><p>在可执行文件中加入调试信息，方便进行程序的调试。如果使用中括号中的选项，表示加入gdb扩展的调试信息，方便使用gdb来进行调试</p><h3 id="O-0-1-2-3"><a href="#O-0-1-2-3" class="headerlink" title="-O[0,1,2,3]"></a><code>-O[0,1,2,3]</code></h3><p>对生成的代码使用优化，中括号中的部分为优化级别，缺省的情况为2级优化，0为不进行优化。注意，采用更高级的优化并不一定得到效率更高的代码</p><h3 id="I-dirname"><a href="#I-dirname" class="headerlink" title="-I dirname"></a><code>-I dirname</code></h3><p>(是大写i，不是小写L)</p><p>将dirname所指出的目录加入到程序头文件目录列表中，是在<strong>预编译</strong>过程中使用的参数</p><h3 id="L-dirname"><a href="#L-dirname" class="headerlink" title="-L dirname"></a><code>-L dirname</code></h3><ul><li>将dirname所指出的目录加入到程序函数档案库文件的目录列表中，是在<strong>连接</strong>过程中使用的参数</li><li>在预设状态下，连接程序ld在系统的预设路径中(如&#x2F;usr&#x2F;lib)寻找所需要的档案库文件</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;gcc简介&quot;&gt;&lt;a href=&quot;#gcc简介&quot; class=&quot;headerlink&quot; title=&quot;gcc简介&quot;&gt;&lt;/a&gt;gcc简介&lt;/h1&gt;&lt;h2 id=&quot;编译过程&quot;&gt;&lt;a href=&quot;#编译过程&quot; class=&quot;headerlink&quot; title=&quot;编译过程&quot;</summary>
-      
-    
-    
-    
-    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
-    
-    
-    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="C/C++" scheme="http://example.com/tags/C-C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Pthread线程库部分函数</title>
     <link href="http://example.com/2022/02/15/Pthread%E7%BA%BF%E7%A8%8B%E5%BA%93%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0/"/>
     <id>http://example.com/2022/02/15/Pthread%E7%BA%BF%E7%A8%8B%E5%BA%93%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0/</id>
