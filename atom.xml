@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-29T01:21:44.959Z</updated>
+  <updated>2022-04-02T08:07:16.251Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ANTLR语法</title>
+    <link href="http://example.com/2022/04/02/ANTLR%E8%AF%AD%E6%B3%95/"/>
+    <id>http://example.com/2022/04/02/ANTLR%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-04-02T08:07:16.000Z</published>
+    <updated>2022-04-02T08:07:16.251Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>安卓开发笔记</title>
+    <link href="http://example.com/2022/03/29/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://example.com/2022/03/29/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-03-29T08:37:28.000Z</published>
+    <updated>2022-03-29T08:42:37.676Z</updated>
+    
+    
+    
+    
+    <category term="Android" scheme="http://example.com/categories/Android/"/>
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Android Studio" scheme="http://example.com/tags/Android-Studio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>antlr4-C++学习笔记（基本操作）</title>
+    <link href="http://example.com/2022/03/29/antlr4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://example.com/2022/03/29/antlr4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2022-03-29T08:01:00.000Z</published>
+    <updated>2022-04-02T08:00:34.511Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>ANTLR是一个可以根据用户定义的文法自动生成词法和语法分析器的工具，并且支持多种语言（默认java，其他语言需要另行配置）</p><h2 id="LInux下安装和配置"><a href="#LInux下安装和配置" class="headerlink" title="LInux下安装和配置"></a>LInux下安装和配置</h2><p>进入<code>/usr/local/lib</code>目录下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/lib</span><br><span class="line">curl -O https://www.antlr.org/download/antlr-4.9-complete.jar</span><br></pre></td></tr></table></figure><p>之后将其加入到环境变量中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.9-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br></pre></td></tr></table></figure><p>但是这个名字太长了，为了方便使用，可以设置别名</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.9.2-complete.jar&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure><h3 id="配置C-环境（需要安装cmake，uuid-dev，pkg-config）"><a href="#配置C-环境（需要安装cmake，uuid-dev，pkg-config）" class="headerlink" title="配置C++环境（需要安装cmake，uuid-dev，pkg-config）"></a>配置C++环境（需要安装cmake，uuid-dev，pkg-config）</h3><p>由于课程设计要求，所以需要ANTLR4生成C++的代码，要额外的配置，首先下载runtime库，<a href="https://www.antlr.org/download/antlr4-cpp-runtime-4.9.3-source.zip">下载链接</a></p><p><strong>压缩包里有两个readme文档，可以自行阅读</strong></p><p>名字太长了不如换个名字如<code>runtime-cpp</code></p><p>解压后放在任意一个文件夹里，进入runtime-cpp文件夹，输入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">mkdir</span> run &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake ..\</span><br><span class="line">make\</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><p>这样就会将生成的库放在<code>usr/local/include</code>中</p><p>课程设计要求在docker中进行编程，所以以上内容可以在编写Dockerfile时完成</p><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> antlr-4.9.2-complete.jar /usr/local/lib</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install vim -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install default-jdk -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install uuid-dev -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install cmake -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install g++ -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install pkg-config -y\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install -y libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; apt-get install git -y</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&quot;export CLASSPATH=&#x27;.:/usr/local/lib/antlr-4.9.2-complete.jar:<span class="variable">$CLASSPATH</span>&#x27;&quot;</span> &gt;&gt; /etc/bash.bashrc\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;alias antlr4=&#x27;java -jar /usr/local/lib/antlr-4.9.2-complete.jar&#x27;&quot;</span> &gt;&gt; /etc/bash.bashrc\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;alias grun=&#x27;java org.antlr.v4.gui.TestRig&#x27;&quot;</span> &gt;&gt; /etc/bash.bashrc\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;export LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/usr/local/lib&quot;</span> &gt;&gt; /etc/bash.bashrc\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; <span class="built_in">mkdir</span> -p /home/root/runtime-cpp</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> runtime-cpp /home/root/runtime-cpp</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /home/root/runtime-cpp</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">mkdir</span> run &amp;&amp; <span class="built_in">cd</span> build\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; cmake ..\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; make\</span></span><br><span class="line"><span class="language-bash">  &amp;&amp; make install</span></span><br></pre></td></tr></table></figure><p>注意，antlr4的包和runtime的文件夹要和<code>Dockerfile</code>放在同一文件夹下</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;ANTLR是一个可以根据用户定义的文法自动生成词法和语法分析器的工具，并且支持多种语言（默认java，其他语言需要另行配置）</summary>
+      
+    
+    
+    
+    <category term="antlr4" scheme="http://example.com/categories/antlr4/"/>
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="antlr4" scheme="http://example.com/tags/antlr4/"/>
+    
+    <category term="cmake" scheme="http://example.com/tags/cmake/"/>
+    
+  </entry>
   
   <entry>
     <title>Cmake教程（持续更新）</title>
